@@ -1,6 +1,10 @@
 #include <iostream>
+#include "../include/csv_parser.h"
 
 int main()
 {
-  std::cout << "Hello Easy C++ project!" << std::endl;
+  CsvParser parser("cities.csv");
+  parser.ParseCities();
+  std::cout
+      << "Hello Easy C++ project!" << std::endl;
 }

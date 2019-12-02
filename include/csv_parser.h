@@ -2,15 +2,17 @@
 
 #include <fstream>
 #include <string>
+#include <vector>
 
 #include "data.h"
 
 using std::ifstream;
 using std::string;
+using std::vector;
 
 class CsvParser
 {
-    string path;
+    std::string path;
     ifstream *file;
 
 public:

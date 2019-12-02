@@ -1,3 +1,8 @@
+#pragma once
+
+#include <string>
+using std::string;
+
 struct City
 {
   int id;
