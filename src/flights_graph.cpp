@@ -46,10 +46,8 @@ void FlightsGraph::ShortestPath(int src)
     int u = pq.top().second;
     pq.pop();
 
-    vector<pair<int, int>>::iterator i;
-    for (i = adjacencyList[u].begin(); i != adjacencyList[u].end(); ++i)
+    for (vector<pair<int, int>>::iterator i = adjacencyList[u].begin(); i != adjacencyList[u].end(); ++i)
     {
-
       int v = (*i).first;
       int weight = (*i).second;
 
