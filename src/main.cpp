@@ -8,9 +8,9 @@ using std::vector;
 
 int main()
 {
-  CsvParser citiesParser("cities.csv");
+  // CsvParser citiesParser("cities.csv");
   CsvParser flightsParser("data.csv");
-  auto cities = citiesParser.ParseCities();
+  // auto cities = citiesParser.ParseCities();
 
   auto flights = flightsParser.ParseFlights();
   vector<Edge *> edges;
@@ -21,4 +21,6 @@ int main()
   }
 
   auto flightsGraph = new FlightsGraph(edges);
+
+  flightsGraph->ShortestPath(1);
 }

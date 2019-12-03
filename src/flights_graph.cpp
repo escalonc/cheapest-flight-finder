@@ -14,6 +14,7 @@ using std::priority_queue;
 
 FlightsGraph::FlightsGraph(vector<Edge *> const edges)
 {
+  adjacencyList.resize(edges.size());
   for (auto edge : edges)
   {
     this->AddEdge(edge);
@@ -25,8 +26,6 @@ void FlightsGraph::AddEdge(Edge *edge)
   int src = edge->sourceId;
   int dest = edge->destinationId;
   int weight = edge->weight;
-
-  std::cout << weight << std::endl;
 
   this->adjacencyList[src].push_back(make_pair(dest, weight));
 }
