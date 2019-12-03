@@ -18,4 +18,5 @@ class CsvParser
 public:
     CsvParser(string path);
     vector<City *> ParseCities();
+    vector<Flight *> ParseFlights();
 };

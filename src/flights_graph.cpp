@@ -1,18 +1,18 @@
 #include "../include/flights_graph.h"
 
-FlightsGraph::FlightsGraph(vector<Edge> const &edges)
+FlightsGraph::FlightsGraph(vector<Edge *> const edges)
 {
-  for (auto &edge : edges)
+  for (auto edge : edges)
   {
     this->AddEdge(edge);
   }
 }
 
-void FlightsGraph::AddEdge(Edge const &entry)
+void FlightsGraph::AddEdge(Edge *edge)
 {
-  int src = entry.sourceId;
-  int dest = entry.destinationId;
-  int weight = entry.weight;
+  int src = edge->sourceId;
+  int dest = edge->destinationId;
+  int weight = edge->weight;
 
   this->adjacencyList[src].push_back(make_pair(dest, weight));
 }

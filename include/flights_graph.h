@@ -18,6 +18,6 @@ class FlightsGraph
 	vector<vector<Pair>> adjacencyList;
 
 public:
-	FlightsGraph(vector<Edge> const &edges);
-	void AddEdge(Edge const &edges);
+	FlightsGraph(vector<Edge *> const edges);
+	void AddEdge(Edge *edge);
 };

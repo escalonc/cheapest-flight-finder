@@ -9,6 +9,11 @@ struct City
   string name;
 };
 
+struct Flight
+{
+  int sourceId, destinationId, weight;
+};
+
 struct Edge
 {
   int sourceId, destinationId, weight;

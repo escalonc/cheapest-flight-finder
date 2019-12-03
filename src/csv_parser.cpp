@@ -6,9 +6,9 @@
 
 #include "../include/csv_parser.h"
 
-using std::cout;
 using std::getline;
 using std::ios;
+using std::stringstream;
 using std::vector;
 
 CsvParser::CsvParser(string path)
@@ -27,17 +27,67 @@ vector<City *> CsvParser::ParseCities()
     throw std::runtime_error("Could not open file");
   }
 
-  int id;
+  string idRecord;
+  string nameRecord;
   std::string line;
 
-  getline(*file, line);
-
-  while (getline(*this->file, line, ','))
+  while (getline(*this->file, line))
   {
-    cout << line << std::endl;
+    std::stringstream ss(line);
+
+    getline(ss, idRecord, ',');
+    getline(ss, nameRecord, ',');
+
+    stringstream formatter(idRecord);
+
+    int id;
+    formatter >> id;
+
+    cities.push_back(new City{id, nameRecord});
   }
 
   this->file->close();
 
   return cities;
+}
+
+vector<Flight *> CsvParser::ParseFlights()
+{
+  this->file = new ifstream();
+  this->file->open(this->path.c_str());
+  vector<Flight *> flights;
+
+  if (!this->file->is_open())
+  {
+    throw std::runtime_error("Could not open file");
+  }
+
+  string sourceIdRecord;
+  string destinationIdRecord;
+  string weightRecord;
+  std::string line;
+
+  while (getline(*this->file, line))
+  {
+    std::stringstream ss(line);
+
+    getline(ss, sourceIdRecord, ',');
+    getline(ss, destinationIdRecord, ',');
+    getline(ss, weightRecord, ',');
+
+    stringstream sourceFormatter(sourceIdRecord);
+    stringstream destinationFormatter(destinationIdRecord);
+    stringstream weightFormatter(weightRecord);
+
+    int sourceId, destinationId, weight;
+    sourceFormatter >> sourceId;
+    destinationFormatter >> destinationId;
+    weightFormatter >> weight;
+
+    flights.push_back(new Flight{sourceId, destinationId, weight});
+  }
+
+  this->file->close();
+
+  return flights;
 }
