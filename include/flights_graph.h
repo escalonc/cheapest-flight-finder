@@ -20,4 +20,5 @@ class FlightsGraph
 public:
 	FlightsGraph(vector<Edge *> const edges);
 	void AddEdge(Edge *edge);
+	void ShortestPath(int src);
 };
