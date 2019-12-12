@@ -3,10 +3,11 @@
 #include <iostream>
 #include <functional>
 #include <list>
+#include <omp.h>
 #include "../include/flights_graph.h"
 
 #define INF 0x3f3f3f3f
-#define V 25
+#define V 271
 
 using std::greater;
 using std::list;
@@ -46,7 +47,7 @@ void FlightsGraph::ShortestPath(int src)
     int u = pq.top().second;
     pq.pop();
 
-    // #pragma omp parallel for
+#pragma omp parallel for num_threads(4)
     for (vector<pair<int, int>>::iterator i = adjacencyList[u].begin(); i != adjacencyList[u].end(); ++i)
     {
       int v = (*i).first;

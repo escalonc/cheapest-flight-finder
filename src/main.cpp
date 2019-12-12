@@ -3,14 +3,17 @@
 
 #include "../include/csv_parser.h"
 #include "../include/flights_graph.h"
+#include "../include/timer.h"
 
 using std::vector;
 
 int main()
 {
   // CsvParser citiesParser("cities.csv");
-  CsvParser flightsParser("data4.csv");
+  CsvParser flightsParser("data.csv");
   // auto cities = citiesParser.ParseCities();
+
+  double start, finish;
 
   auto flights = flightsParser.ParseFlights();
   vector<Edge *> edges;
@@ -22,5 +25,10 @@ int main()
 
   auto flightsGraph = new FlightsGraph(edges);
 
-  flightsGraph->ShortestPath(4);
+  GET_TIME(start);
+  flightsGraph->ShortestPath(1);
+  GET_TIME(finish);
+
+  std::cout << std::endl
+            << "Total time: " << finish - start << std::endl;
 }
