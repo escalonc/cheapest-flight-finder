@@ -1,4 +1,3 @@
-// #include <bits/stdc++.h>
 #include <queue>
 #include <iostream>
 #include <functional>
@@ -6,6 +5,7 @@
 #include <omp.h>
 #include "../include/flights_graph.h"
 
+// define the top number based on 4 bytes
 #define INF 0x3f3f3f3f
 #define V 271
 
@@ -22,6 +22,7 @@ FlightsGraph::FlightsGraph(vector<Edge *> const edges)
   }
 }
 
+// initilizes and creates a new edge
 void FlightsGraph::AddEdge(Edge *edge)
 {
   int src = edge->sourceId;
@@ -34,6 +35,7 @@ void FlightsGraph::AddEdge(Edge *edge)
 void FlightsGraph::ShortestPath(int src)
 {
 
+  // queue used to track the processed values
   priority_queue<Pair, vector<Pair>, greater<Pair>> pq;
 
   vector<int> dist(V, INF);
@@ -57,6 +59,7 @@ void FlightsGraph::ShortestPath(int src)
       {
 
         dist[v] = dist[u] + weight;
+#pragma omp critical
         pq.push(make_pair(dist[v], v));
       }
     }
