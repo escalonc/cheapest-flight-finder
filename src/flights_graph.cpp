@@ -46,7 +46,7 @@ void FlightsGraph::ShortestPath(int src)
     int u = pq.top().second;
     pq.pop();
 
-#pragma omp parallel for
+    // #pragma omp parallel for
     for (vector<pair<int, int>>::iterator i = adjacencyList[u].begin(); i != adjacencyList[u].end(); ++i)
     {
       int v = (*i).first;
